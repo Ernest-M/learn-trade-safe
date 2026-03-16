@@ -35,7 +35,7 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/academy" element={<Academy />} />
               <Route path="/academy/module/:moduleId" element={<ModulePage />} />
-              <Route path="/academy/module/:moduleId/lesson/:lessonId" element={<LessonPage />} />
+              <Route path="/academy/:slug" element={<LessonPage />} />
               <Route path="/tools" element={<Tools />} />
               <Route path="/tools/lot-size-calculator" element={<LotSizeCalculator />} />
               <Route path="/tools/margin-calculator" element={<MarginCalculator />} />

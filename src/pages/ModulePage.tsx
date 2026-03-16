@@ -29,7 +29,6 @@ export default function ModulePage() {
           <p className="text-muted-foreground mt-2">{mod.description}</p>
         </div>
 
-        {/* Progress */}
         <div className="bg-muted/50 border rounded-lg p-3 mb-6">
           <div className="flex items-center justify-between mb-1">
             <span className="text-sm font-medium">{completed}/{mod.lessons.length} lessons completed</span>
@@ -51,7 +50,7 @@ export default function ModulePage() {
                     : <Circle className="h-5 w-5 text-muted-foreground" />
                   }
                 </button>
-                <Link to={`/academy/module/${mod.id}/lesson/${lesson.id}`} className="flex-1 min-w-0">
+                <Link to={`/academy/${lesson.slug}`} className="flex-1 min-w-0">
                   <h3 className={`font-medium text-sm ${done ? "text-muted-foreground line-through" : ""}`}>
                     {i + 1}. {lesson.title}
                   </h3>
@@ -72,7 +71,6 @@ export default function ModulePage() {
           })}
         </div>
 
-        {/* Module navigation */}
         <div className="mt-8 flex justify-between">
           {prevModule ? (
             <Link to={`/academy/module/${prevModule.id}`} className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1">
