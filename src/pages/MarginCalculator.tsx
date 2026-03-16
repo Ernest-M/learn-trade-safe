@@ -24,13 +24,22 @@ export default function MarginCalculator() {
 
   return (
     <>
-      <SEO title="Margin Calculator" description="Calculate margin requirements for forex and gold trades. Check if your account can handle the position." path="/tools/margin-calculator" />
+      <SEO title="Margin Calculator" description="Free margin calculator for forex and gold trading. Calculate margin requirements and check if your account can handle the position before trading." path="/tools/margin-calculator" />
       <div className="container mx-auto max-w-2xl px-4 py-12">
         <Link to="/tools" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6">
           <ArrowLeft className="h-4 w-4" /> All Tools
         </Link>
         <h1 className="font-display text-3xl font-bold mb-2">Margin Calculator</h1>
-        <p className="text-muted-foreground mb-8">Check margin requirements before opening a trade.</p>
+        <p className="text-muted-foreground mb-6">Check margin requirements before opening a trade to avoid margin calls.</p>
+
+        <div className="prose prose-sm max-w-none mb-8 space-y-3">
+          <p className="text-sm text-foreground leading-relaxed">
+            Margin is the collateral required by your broker to open and maintain a leveraged position. It's not a fee — it's a portion of your account set aside as a deposit. Understanding margin requirements prevents unexpected margin calls that can force-close your trades.
+          </p>
+          <p className="text-sm text-foreground leading-relaxed">
+            The formula is: <strong>Margin = (Price × Lot Size × Contract Size) ÷ Leverage</strong>. For example, buying 0.01 lots of gold at $2,900 with 1:100 leverage requires $29 margin.
+          </p>
+        </div>
 
         <div className="flex gap-2 mb-6 flex-wrap">
           {presets.map((p, i) => (
@@ -64,7 +73,6 @@ export default function MarginCalculator() {
           </div>
         </div>
 
-        {/* Output */}
         <div className={`rounded-lg p-6 mb-8 text-center border ${overMargin ? "bg-destructive/5 border-destructive/30" : "bg-gold/5 border-gold/20"}`}>
           <p className="text-sm text-muted-foreground mb-1">Margin Required</p>
           <p className={`text-4xl font-display font-bold ${overMargin ? "text-destructive" : "text-gold"}`}>${margin.toFixed(2)}</p>
@@ -88,6 +96,18 @@ export default function MarginCalculator() {
               <p>• Forgetting that different instruments have different contract sizes.</p>
             </AccordionContent>
           </AccordionItem>
+          <AccordionItem value="faq-1">
+            <AccordionTrigger className="text-sm font-medium">What is a margin call?</AccordionTrigger>
+            <AccordionContent className="text-sm text-muted-foreground">
+              A margin call happens when your losses reduce your account equity below the required margin level. Your broker will either ask you to deposit more funds or automatically close your positions to prevent further losses.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="faq-2">
+            <AccordionTrigger className="text-sm font-medium">How much free margin should I keep?</AccordionTrigger>
+            <AccordionContent className="text-sm text-muted-foreground">
+              As a rule of thumb, never use more than 10-20% of your account as margin. This leaves room for drawdown and prevents margin calls during normal market fluctuations.
+            </AccordionContent>
+          </AccordionItem>
         </Accordion>
 
         <div className="bg-muted/50 border rounded-lg p-4 flex items-start gap-2 mb-8">
@@ -95,7 +115,16 @@ export default function MarginCalculator() {
           <p className="text-xs text-muted-foreground">This calculator is for educational purposes. Always verify with your broker's specific margin requirements.</p>
         </div>
 
-        <Link to="/academy/module/3/lesson/3-2" className="text-sm text-gold hover:underline">← Learn about Margin</Link>
+        <div className="space-y-2">
+          <h3 className="text-sm font-medium">Related Lessons</h3>
+          <div className="flex flex-wrap gap-2">
+            <Link to="/academy/lots-and-leverage" className="text-sm text-gold hover:underline">Lots and Leverage</Link>
+            <span className="text-muted-foreground">•</span>
+            <Link to="/academy/most-important-rule" className="text-sm text-gold hover:underline">The 1% Risk Rule</Link>
+            <span className="text-muted-foreground">•</span>
+            <Link to="/academy/order-types" className="text-sm text-gold hover:underline">Order Types</Link>
+          </div>
+        </div>
       </div>
     </>
   );
