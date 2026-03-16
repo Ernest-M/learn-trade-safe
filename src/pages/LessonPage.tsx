@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Link, useParams } from "react-router-dom";
 import SEO from "@/components/SEO";
 import { modules } from "@/data/modules";
@@ -5,6 +6,15 @@ import { useProgress } from "@/hooks/useProgress";
 import Quiz from "@/components/Quiz";
 import { ArrowLeft, ArrowRight, CheckCircle, Circle, Wrench, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+const interactiveComponents: Record<string, React.LazyExoticComponent<React.ComponentType>> = {
+  MarketStructureVisualizer: lazy(() => import("@/components/interactive/MarketStructureVisualizer")),
+  LiquiditySweepSimulator: lazy(() => import("@/components/interactive/LiquiditySweepSimulator")),
+  TradeDecisionTrainer: lazy(() => import("@/components/interactive/TradeDecisionTrainer")),
+  SessionHeatmap: lazy(() => import("@/components/interactive/SessionHeatmap")),
+  TradingChecklist: lazy(() => import("@/components/interactive/TradingChecklist")),
+  Flashcards: lazy(() => import("@/components/interactive/Flashcards")),
+};
 
 export default function LessonPage() {
   const { moduleId, lessonId } = useParams();
@@ -19,6 +29,10 @@ export default function LessonPage() {
   const nextLesson = lessonIndex < mod.lessons.length - 1 ? mod.lessons[lessonIndex + 1] : null;
   const nextModule = modules.find(m => m.id === mod.id + 1);
   const done = isComplete(lesson.id);
+
+  const InteractiveComponent = lesson.interactiveComponent
+    ? interactiveComponents[lesson.interactiveComponent]
+    : null;
 
   return (
     <>
@@ -53,6 +67,13 @@ export default function LessonPage() {
             <p key={i} className="text-foreground leading-relaxed">{p}</p>
           ))}
         </div>
+
+        {/* Interactive component */}
+        {InteractiveComponent && (
+          <Suspense fallback={<div className="bg-muted/50 border rounded-lg p-6 my-6 text-center text-sm text-muted-foreground">Loading interactive tool...</div>}>
+            <InteractiveComponent />
+          </Suspense>
+        )}
 
         {/* Tool link */}
         {lesson.toolLink && (
