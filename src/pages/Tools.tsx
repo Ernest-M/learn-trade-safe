@@ -8,21 +8,21 @@ const tools = [
     desc: "Calculate the right position size based on your account balance, risk percentage, and stop loss distance.",
     path: "/tools/lot-size-calculator",
     icon: Calculator,
-    relatedLesson: { label: "Learn Position Sizing", path: "/academy/module/3/lesson/3-4" },
+    relatedLesson: { label: "Learn Position Sizing", path: "/academy/position-sizing" },
   },
   {
     title: "Margin Calculator",
     desc: "Check how much margin is required for a trade and whether your account can handle it.",
     path: "/tools/margin-calculator",
     icon: Shield,
-    relatedLesson: { label: "Learn About Margin", path: "/academy/module/3/lesson/3-2" },
+    relatedLesson: { label: "Learn About Margin", path: "/academy/order-types" },
   },
   {
     title: "Risk Per Trade Calculator",
     desc: "Quickly calculate the dollar amount you're risking on a trade based on your risk percentage.",
     path: "/tools/risk-calculator",
     icon: Target,
-    relatedLesson: { label: "Learn Risk Management", path: "/academy/module/3/lesson/3-3" },
+    relatedLesson: { label: "Learn Risk Management", path: "academy/most-important-rule" },
   },
 ];
 
