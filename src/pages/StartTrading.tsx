@@ -78,10 +78,7 @@ export default function StartTrading() {
             </div>
           </a>
         </div>
-
-        <p className="text-xs text-muted-foreground text-center">
-          Links above are affiliate links. See our <Link to="/disclaimer" className="underline hover:text-foreground">disclaimer</Link> for details.
-        </p>
+        
       </div>
     </>
   );
