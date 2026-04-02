@@ -29,10 +29,6 @@ export default function GoldInsights() {
             </Link>
           ))}
         </div>
-
-        <p className="text-xs text-muted-foreground mt-8 text-center">
-          Posts are stored in <code className="bg-muted px-1 rounded">src/data/gold-insights.ts</code> — edit that file to add new insights.
-        </p>
       </div>
     </>
   );
