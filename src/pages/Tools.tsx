@@ -22,7 +22,7 @@ const tools = [
     desc: "Quickly calculate the dollar amount you're risking on a trade based on your risk percentage.",
     path: "/tools/risk-calculator",
     icon: Target,
-    relatedLesson: { label: "Learn Risk Management", path: "academy/most-important-rule" },
+    relatedLesson: { label: "Learn Risk Management", path: "/academy/most-important-rule" },
   },
 ];
 
