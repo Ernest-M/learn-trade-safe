@@ -5,7 +5,7 @@ import { AFFILIATE_XM_URL } from "@/config/affiliate";
 import { CheckCircle, AlertTriangle, ExternalLink } from "lucide-react";
 
 const checklist = [
-  "Completed all 5 academy modules",
+  "Completed all 9 academy modules",
   "Practiced on demo for at least 2 weeks",
   "Consistently used stop losses on every trade",
   "Can calculate lot size for your account",
