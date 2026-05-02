@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import SEO from "@/components/SEO";
 import { modules } from "@/data/modules";
 import { goldPosts } from "@/data/gold-insights";
@@ -28,6 +29,7 @@ const interactiveFeatures = [
 ];
 
 export default function Home() {
+  const [email, setEmail] = useState("");
   const latestPost = goldPosts[0];
 
   return (
@@ -160,15 +162,39 @@ export default function Home() {
         <div className="container mx-auto max-w-xl text-center">
           <h2 className="font-display text-2xl font-bold mb-2">Get Weekly Beginner Lessons</h2>
           <p className="text-muted-foreground mb-6 text-sm">No spam, no signals — just education.</p>
-          <form onSubmit={(e) => { e.preventDefault(); alert("Thanks! You'll receive weekly lessons."); }} className="flex gap-2 max-w-sm mx-auto">
+          <form 
+            onSubmit={async (e) => { 
+              e.preventDefault();
+            
+              try {
+                await fetch("https://automation.patroniautomation.com/webhook-test/email-capture", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify({ email })
+                });
+              
+                alert("Subscribed successfully!");
+                setEmail("");
+              
+              } catch (error) {
+                console.error(error);
+                alert("Something went wrong");
+              }
+            }} 
+            className="flex gap-2 max-w-sm mx-auto"
+          >
             <input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
               required
               className="flex-1 px-4 py-2 rounded-md border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-gold"
             />
             <Button variant="gold" type="submit" size="sm">Subscribe</Button>
-          </form>
+          </form> 
         </div>
       </section>
     </>
