@@ -1,0 +1,9 @@
+services:
+  website:
+    build:
+      context: .
+    image: patroni-forex-site
+    container_name: patroni-forex-site
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT}:80"
