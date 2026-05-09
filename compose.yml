@@ -1,9 +1,10 @@
 services:
   website:
     build:
-      context: .
-    image: patroni-forex-site
-    container_name: patroni-forex-site
+      context: ./Frontend
+    image: ${IMAGE_NAME_FRONTEND}
+    container_name: ${CONTAINER_NAME_FRONTEND}
     restart: unless-stopped
     ports:
       - "${APP_PORT}:80"
+    env_file: .env
